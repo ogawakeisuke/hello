@@ -28,9 +28,9 @@ set :default_environment, {
 # these http://github.com/rails/irs_process_scripts
 
 # If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
+#namespace :deploy do
+#   task :start do end #cap deploy:startというコマンドをローカルで入れる
+#   task :stop do ; end	#cap deploy:stop
 #   task :restart, :roles => :app, :except => { :no_release => true } do
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
