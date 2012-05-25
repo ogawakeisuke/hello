@@ -51,8 +51,8 @@ namespace :deploy do
   task :reload, :roles => :app do
     run "kill -s USR2 `cat #{unicorn_pid}`"
   end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    stop
-    start
-  end
+ # task :restart, :roles => :app, :except => { :no_release => true } do
+  #  stop
+   # start
+  #end
 end
