@@ -1,13 +1,25 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require 'bundler/capistrano' #サーバーでも勝手にバンドル走る
+set :use_sudo, false #ルート以外もつかうため
 
-set :scm, :subversion
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :application, "hello"
+set :repository,  "git@github.com:ogawakeisuke/hello.git"
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :scm, :git
+set :branch, "master"#gitのブランチ情報
+set :user, "hello"
+set :deploy_to, "/home/#{user}/app/#{application}" #誰がデプロイしてるか
+ssh_options[:forward_agent] = true
+
+set :deploy_via, :copy  #サーバ上にコピー　必要
+set :git_shallow_clone, 1 #クローンは直前
+
+role :web, "133.242.48.15"                          # Your HTTP server, Apache/etc
+role :app, "133.242.48.15"                          # This may be the same as your `Web` server
+role :db,  "133.242.48.15"
+
+set :default_environment, {
+ 'PATH' => "~/.rbenv/shims/:~/.rbenv/bin/:$PATH" #コロンはそれぞれパスを探している
+}
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"

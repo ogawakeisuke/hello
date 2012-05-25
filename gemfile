@@ -8,7 +8,8 @@ gem 'rails', '3.2.3'
 gem 'sqlite3'
 
 group :local do
-	gem 'capistrano'
+	gem 'capistrano','2.11.2'
+	gem 'net-ssh', '2.3.0'
 end
 
 # Gems used only for assets and not required
